@@ -1,0 +1,16 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Project2_res/Characters/Athena.png</file>
+        <file>Project2_res/Characters/Lion.png</file>
+        <file>Project2_res/Characters/Mei.png</file>
+        <file>Project2_res/Characters/Vivian.png</file>
+        <file>Project2_res/Tiles/Tile_Grass1.png</file>
+        <file>Project2_res/Tiles/Tile_Grass2.png</file>
+        <file>Project2_res/Tiles/Tile_Grass3.png</file>
+        <file>Project2_res/Tiles/Tile_Trees1.png</file>
+        <file>Project2_res/Tiles/Tile_Trees2.png</file>
+        <file>Project2_res/Tiles/Tile_Trees3.png</file>
+        <file>Project2_res/Tiles/Tile_Trees4.png</file>
+        <file>Project2_res/Tiles/Tile_Trees5.png</file>
+    </qresource>
+</RCC>
