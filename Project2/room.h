@@ -13,6 +13,7 @@ class room: public QObject, public QGraphicsPixmapItem
     Q_OBJECT
 public:
     room();
+    ~room();
 
     map map1[30][20];
 

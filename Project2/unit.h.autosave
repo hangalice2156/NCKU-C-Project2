@@ -1,0 +1,38 @@
+#ifndef UNIT_H
+#define UNIT_H
+
+#include <QObject>
+#include "map.h"
+#include "room.h"
+
+
+class unit: public QObject
+{
+     Q_OBJECT
+public:
+    unit();
+    ~unit();
+
+    int getHp();
+    int getMaxHp();
+    int getMovement();
+    int getMaxMovement();
+    void onHit(int enemyatk);
+    void setLocat(room *r);
+
+private:
+    int hp;
+    int max_hp;
+
+    int atk;
+    int def;
+
+    int move;
+    int max_move;
+
+    int team;
+    map *locat;
+
+};
+
+#endif // UNIT_H

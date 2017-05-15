@@ -10,9 +10,14 @@ class map: public QObject, public QGraphicsPixmapItem
     Q_OBJECT
 public:
     map();
+    ~map();
 
     QString name;
     bool walk;
+
+    //position
+    int x;
+    int y;
 };
 
 #endif // MAP_H

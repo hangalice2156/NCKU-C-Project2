@@ -36,7 +36,7 @@ void MainWindow::generate_map(room *r)
                 }
 
                 scene->addItem(item1[item1.size()-1]);
-                item1[item1.size()-1] -> setPos(32*i, 32*j);
+                item1[item1.size()-1] -> setPos(r -> map1[i][j].x, r -> map1[i][j].y);
             }
 
             else if(r -> map1[i][j].name == "Grass")
@@ -50,7 +50,7 @@ void MainWindow::generate_map(room *r)
                 }
 
                 scene->addItem(item1[item1.size()-1]);
-                item1[item1.size()-1] -> setPos(32*i, 32*j);
+                item1[item1.size()-1] -> setPos(r -> map1[i][j].x, r -> map1[i][j].y);
             }
         }
     }
