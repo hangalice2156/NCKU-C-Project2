@@ -1,8 +1,6 @@
 #ifndef ROOM_H
 #define ROOM_H
 
-#include <QObject>
-#include <QGraphicsPixmapItem>
 #include <QVector>
 #include <iostream>
 

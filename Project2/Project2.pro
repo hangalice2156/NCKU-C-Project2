@@ -27,12 +27,20 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     map.cpp \
     room.cpp \
-    unit.cpp
+    unit.cpp \
+    leon.cpp \
+    athena.cpp \
+    vivian.cpp \
+    mei.cpp
 
 HEADERS  += mainwindow.h \
     map.h \
     room.h \
-    unit.h
+    unit.h \
+    leon.h \
+    athena.h \
+    vivian.h \
+    mei.h
 
 FORMS    += mainwindow.ui
 

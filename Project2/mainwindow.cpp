@@ -10,6 +10,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->graphicsView->setScene(scene);
     room *room1 = new room;
     generate_map(room1);
+    character_set();
+    character_counter = 0;
 }
 
 MainWindow::~MainWindow()
@@ -54,4 +56,96 @@ void MainWindow::generate_map(room *r)
             }
         }
     }
+}
+
+void MainWindow::character_set()
+{
+    chara1 = new QPushButton(tr("Leon"),this);
+    chara1->setGeometry(65,22,80,80);
+    chara1->setIcon(QIcon(QPixmap(":/Project2_res/Characters/Lion.png")));
+    chara1->setIconSize(QSize(80,80));
+    connect(chara1,SIGNAL(clicked()),this,SLOT(generate_Leon()));
+
+    chara2 = new QPushButton(tr("Athena"),this);
+    chara2->setGeometry(65,102,80,80);
+    chara2->setIcon(QIcon(QPixmap(":/Project2_res/Characters/Athena.png")));
+    chara2->setIconSize(QSize(80,80));
+    connect(chara2,SIGNAL(clicked()),this,SLOT(generate_Athena()));
+
+    chara3 = new QPushButton(tr("Vivian"),this);
+    chara3->setGeometry(65,182,80,80);
+    chara3->setIcon(QIcon(QPixmap(":/Project2_res/Characters/Vivian.png")));
+    chara3->setIconSize(QSize(80,80));
+    connect(chara3,SIGNAL(clicked()),this,SLOT(generate_Vivian()));
+
+    chara4 = new QPushButton(tr("Mei"),this);
+    chara4->setGeometry(65,262,80,80);
+    chara4->setIcon(QIcon(QPixmap(":/Project2_res/Characters/Mei.png")));
+    chara4->setIconSize(QSize(80,80));
+    connect(chara4,SIGNAL(clicked()),this,SLOT(generate_Mei()));
+}
+
+void MainWindow::generate_Leon()
+{
+    if(character_counter < 2)
+    {
+        minions.push_back(new leon);
+        minions[minions.size()-1]->setPixmap(QPixmap(":/Project2_res/Characters/Lion.png"));
+        scene->addItem(minions[minions.size()-1]);
+        minions[minions.size()-1] -> setPos(minions[minions.size()-1]->x,minions[minions.size()-1]->y);
+
+        character_counter += 1;
+        delete chara1;
+    }
+
+}
+
+void MainWindow::generate_Athena()
+{
+    if(character_counter < 2)
+    {
+        minions.push_back(new athena);
+        minions[minions.size()-1]->setPixmap(QPixmap(":/Project2_res/Characters/Athena.png"));
+        scene->addItem(minions[minions.size()-1]);
+        minions[minions.size()-1] -> setPos(minions[minions.size()-1]->x,minions[minions.size()-1]->y);
+
+        character_counter += 1;
+        delete chara2;
+    }
+
+}
+
+void MainWindow::generate_Vivian()
+{
+    if(character_counter < 2)
+    {
+        minions.push_back(new vivian);
+        minions[minions.size()-1]->setPixmap(QPixmap(":/Project2_res/Characters/Vivian.png"));
+        scene->addItem(minions[minions.size()-1]);
+        minions[minions.size()-1] -> setPos(minions[minions.size()-1]->x,minions[minions.size()-1]->y);
+
+        character_counter += 1;
+        delete chara3;
+    }
+
+}
+
+void MainWindow::generate_Mei()
+{
+    if(character_counter < 2)
+    {
+        minions.push_back(new mei);
+        minions[minions.size()-1]->setPixmap(QPixmap(":/Project2_res/Characters/Mei.png"));
+        scene->addItem(minions[minions.size()-1]);
+        minions[minions.size()-1] -> setPos(minions[minions.size()-1]->x,minions[minions.size()-1]->y);
+
+        character_counter += 1;
+        delete chara4;
+    }
+
+}
+
+void MainWindow::generate_minions()
+{
+
 }

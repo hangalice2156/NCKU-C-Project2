@@ -1,5 +1,5 @@
 #include "unit.h"
-
+#include "room.h"
 
 unit::unit()
 {
@@ -35,4 +35,19 @@ int unit::getMaxMovement()
 void unit::onHit(int enemyatk)
 {
     if((enemyatk - def) >= 0) hp -= (enemyatk - def);
+}
+
+int unit::getxPos()
+{
+    return x;
+}
+
+int unit::getyPos()
+{
+    return y;
+}
+
+void unit::setLocat(room *r)
+{
+
 }

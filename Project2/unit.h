@@ -3,9 +3,10 @@
 
 #include <QObject>
 #include "map.h"
+#include "room.h"
 
 
-class unit: public QObject
+class unit: public QObject, public QGraphicsPixmapItem
 {
      Q_OBJECT
 public:
@@ -14,11 +15,14 @@ public:
 
     int getHp();
     int getMaxHp();
-    void onHit(int enemyatk);
     int getMovement();
     int getMaxMovement();
+    void onHit(int enemyatk);
+    int getxPos();
+    int getyPos();
+    virtual void setLocat(room *r);
 
-private:
+public:
     int hp;
     int max_hp;
 
@@ -29,8 +33,9 @@ private:
     int max_move;
 
     int team;
-    map *locat;
 
+    int x;
+    int y;
 };
 
 #endif // UNIT_H
