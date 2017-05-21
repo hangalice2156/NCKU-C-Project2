@@ -8,6 +8,7 @@
 #include <QPushButton>
 #include <QKeyEvent>
 #include <cmath>
+#include <QMessageBox>
 
 #include "map.h"
 #include "room.h"
@@ -34,6 +35,8 @@ public:
     void generate_map(room *r);
     void character_set();
     int character_counter;
+    void game_over();
+    void victory();
 
 public slots:
     void generate_minions();

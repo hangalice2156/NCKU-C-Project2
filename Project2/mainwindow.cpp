@@ -210,8 +210,58 @@ void MainWindow::keyPressEvent(QKeyEvent *k)
         flag = minions.at(1);
     }
 
+    // tower and enemy movement,then reset all moves.
     if(minions.at(1)->move == 0)
     {
+        for(int i = 2; i < minions.size(); ++i)
+        {
+            if(minions.at(i)->max_move == 1)
+            {
+                for(int j = 0; j < minions.size(); ++j)
+                    if((abs(minions.at(i)->x - minions.at(j)->x) <= 64) && abs(minions.at(i)->y - minions.at(j)->y) <= 64 && (minions.at(i)->team != minions.at(j)->team))
+                    {
+                        minions.at(j)->onHit(minions.at(i)->atk);
+                        if(minions.at(j)->hp <= 0)
+                        {
+                            delete minions.at(j);
+                            minions.erase(minions.begin()+j);
+                            game_over();
+                        }
+                        std::cerr << "HIT!" << std::endl;
+                        std::cerr << "target hit point =" <<minions.at(j)->hp << std::endl;
+                        break;
+                    }
+            }
+            if(minions.at(i)->max_move != 1)
+            {
+                for(int j = 0; j < minions.size(); ++j)
+                {
+                    if((abs(minions.at(i)->x - minions.at(j)->x) <= 96) && abs(minions.at(i)->y - minions.at(j)->y) <= 32 && (minions.at(i)->team != minions.at(j)->team))
+                    {
+                        minions.at(j)->onHit(minions.at(i)->atk);
+                        if(minions.at(j)->hp <= 0)
+                        {
+                            delete minions.at(j);
+                            minions.erase(minions.begin()+j);
+                            game_over();
+                        }
+                        std::cerr << "HIT!" << std::endl;
+                        std::cerr << "target hit point =" <<minions.at(j)->hp << std::endl;
+                        break;
+                    }
+
+                    else
+                    {
+                        minions.at(i)->x -= 32;
+                        minions.at(i)->setPos(minions.at(i)->x,minions.at(i)->y);
+                        minions.at(i)->move = 0;
+                        break;
+                    }
+                }
+            }
+
+        }
+
         minions.at(0)->move = minions.at(0)->max_move;
         minions.at(1)->move = minions.at(1)->max_move;
         flag = minions.at(0);
@@ -249,7 +299,6 @@ void MainWindow::keyPressEvent(QKeyEvent *k)
         flag->setPos(flag->x,flag->y);
         flag->move -= 1;
         std::cerr << flag->move << std::endl;
-        std::cerr << flag->x << std::endl;
         break;
     }
     case Qt::Key_J:
@@ -259,6 +308,10 @@ void MainWindow::keyPressEvent(QKeyEvent *k)
             if((minions.at(i)->x == (flag->x + 32)) && (minions.at(i)->y == flag->y) && (minions.at(i)->team != flag->team))
             {
                 minions.at(i)->onHit(flag->atk);
+                if(minions.at(3)->hp <= 0)
+                {
+                    victory();
+                }
                 if(minions.at(i)->hp <= 0)
                 {
                     delete minions.at(i);
@@ -266,10 +319,31 @@ void MainWindow::keyPressEvent(QKeyEvent *k)
                 }
                 flag->move -= 1;
                 std::cerr << flag->move << std::endl;
+                std::cerr << "HIT!" << std::endl;
                 break;
             }
         }
     }
 
     }
+}
+
+
+void MainWindow::game_over()
+{
+    QMessageBox *lose = new QMessageBox(this);
+    lose->setWindowTitle(tr("You Lose!!"));
+    lose->setText(tr("Your Tower or Heros Can't Not Be Defeated!"));
+    lose->setStandardButtons(QMessageBox::Ok);
+    lose->setIcon(QMessageBox::Critical);
+    lose->exec();
+}
+
+void MainWindow::victory()
+{
+    QMessageBox *win = new QMessageBox(this);
+    win->setWindowTitle(tr("You win!"));
+    win->setText(tr("Congratulations!"));
+    win->setStandardButtons(QMessageBox::Ok);
+    win->exec();
 }

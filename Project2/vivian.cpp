@@ -23,3 +23,9 @@ void vivian::setLocat(room *r)
     x = r->map1[0][11].x;
     y = r->map1[0][11].y;
 }
+
+
+void vivian::test()
+{
+
+}

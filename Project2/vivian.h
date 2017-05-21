@@ -10,6 +10,9 @@ public:
     ~vivian();
 
     virtual void setLocat(room *r);
+
+public slots:
+    void test();
 };
 
 #endif // VIVIAN_H

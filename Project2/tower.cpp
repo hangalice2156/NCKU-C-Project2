@@ -11,8 +11,8 @@ tower::tower(int tag)
     max_hp = 300;
     atk = 50;
     def = 0;
-    move = 0;
-    max_move = 0;
+    move = 1;
+    max_move = 1;
     team = tag;
 
     if(team == 1)
