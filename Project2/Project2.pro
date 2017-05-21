@@ -31,7 +31,9 @@ SOURCES += main.cpp\
     leon.cpp \
     athena.cpp \
     vivian.cpp \
-    mei.cpp
+    mei.cpp \
+    tower.cpp \
+    enemy.cpp
 
 HEADERS  += mainwindow.h \
     map.h \
@@ -40,7 +42,9 @@ HEADERS  += mainwindow.h \
     leon.h \
     athena.h \
     vivian.h \
-    mei.h
+    mei.h \
+    tower.h \
+    enemy.h
 
 FORMS    += mainwindow.ui
 

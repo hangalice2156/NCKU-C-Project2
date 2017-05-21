@@ -7,6 +7,7 @@
 #include <QTimer>
 #include <QPushButton>
 #include <QKeyEvent>
+#include <cmath>
 
 #include "map.h"
 #include "room.h"
@@ -15,6 +16,8 @@
 #include "athena.h"
 #include "vivian.h"
 #include "mei.h"
+#include "tower.h"
+#include "enemy.h"
 
 namespace Ui {
 class MainWindow;
@@ -38,16 +41,19 @@ public slots:
     void generate_Athena();
     void generate_Vivian();
     void generate_Mei();
+    virtual void keyPressEvent(QKeyEvent *k);
 
 private:
     Ui::MainWindow *ui;
     QGraphicsScene *scene;
     QVector<QGraphicsPixmapItem*> item1;
     QVector<unit*> minions;
+    unit *flag;
     QPushButton *chara1;
     QPushButton *chara2;
     QPushButton *chara3;
     QPushButton *chara4;
+    QPushButton *start;
 };
 
 #endif // MAINWINDOW_H

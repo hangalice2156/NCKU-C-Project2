@@ -10,7 +10,7 @@ vivian::vivian()
     max_move = 5;
     team = 1; //player
     x = 0;
-    y = 350;
+    y = 32*11;
 }
 
 vivian::~vivian()

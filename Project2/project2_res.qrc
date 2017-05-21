@@ -12,5 +12,7 @@
         <file>Project2_res/Tiles/Tile_Trees3.png</file>
         <file>Project2_res/Tiles/Tile_Trees4.png</file>
         <file>Project2_res/Tiles/Tile_Trees5.png</file>
+        <file>Project2_res/Enemys/Hanzo.png</file>
+        <file>Project2_res/Towers/tower.png</file>
     </qresource>
 </RCC>

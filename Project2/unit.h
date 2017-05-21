@@ -5,6 +5,7 @@
 #include "map.h"
 #include "room.h"
 
+#include <QKeyEvent>
 
 class unit: public QObject, public QGraphicsPixmapItem
 {

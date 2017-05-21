@@ -10,7 +10,7 @@ leon::leon()
     max_move = 4;
     team = 1; //player
     x = 0;
-    y = 224;
+    y = 32*7;
 }
 
 leon::~leon()

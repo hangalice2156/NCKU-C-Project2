@@ -11,7 +11,6 @@ unit::~unit()
 
 }
 
-
 int unit::getHp()
 {
     return hp;

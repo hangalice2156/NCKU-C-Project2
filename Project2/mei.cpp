@@ -10,7 +10,7 @@ mei::mei()
     max_move = 4;
     team = 1; //player
     x = 0;
-    y = 414;
+    y = 32*13;
 }
 
 mei::~mei()

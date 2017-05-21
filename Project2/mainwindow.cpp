@@ -9,9 +9,16 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     ui->graphicsView->setScene(scene);
     room *room1 = new room;
+
+    start = new QPushButton(tr("Game Start"),this);
+    start->setGeometry(-15,584,160,80);
+    connect(start,SIGNAL(clicked()),this,SLOT(generate_minions()));
+    start->hide();
     generate_map(room1);
     character_set();
     character_counter = 0;
+
+
 }
 
 MainWindow::~MainWindow()
@@ -98,6 +105,11 @@ void MainWindow::generate_Leon()
         delete chara1;
     }
 
+    if(character_counter == 2)
+    {
+        start->show();
+
+    }
 }
 
 void MainWindow::generate_Athena()
@@ -113,6 +125,11 @@ void MainWindow::generate_Athena()
         delete chara2;
     }
 
+    if(character_counter == 2)
+    {
+        start->show();
+
+    }
 }
 
 void MainWindow::generate_Vivian()
@@ -128,6 +145,11 @@ void MainWindow::generate_Vivian()
         delete chara3;
     }
 
+    if(character_counter == 2)
+    {
+        start->show();
+
+    }
 }
 
 void MainWindow::generate_Mei()
@@ -143,9 +165,111 @@ void MainWindow::generate_Mei()
         delete chara4;
     }
 
+    if(character_counter == 2)
+    {
+        start->show();
+
+    }
 }
 
 void MainWindow::generate_minions()
 {
+    minions.push_back(new tower(1));
+    minions[minions.size()-1]->setPixmap(QPixmap("://Project2_res/Towers/tower.png"));
+    scene->addItem(minions[minions.size()-1]);
+    minions[minions.size()-1] -> setPos(minions[minions.size()-1]->x,minions[minions.size()-1]->y);
 
+    minions.push_back(new tower(2));
+    minions[minions.size()-1]->setPixmap(QPixmap("://Project2_res/Towers/tower.png"));
+    scene->addItem(minions[minions.size()-1]);
+    minions[minions.size()-1] -> setPos(minions[minions.size()-1]->x,minions[minions.size()-1]->y);
+
+    for(int x = 0; x < 5; ++x)
+    {
+        minions.push_back(new enemy);
+        minions[minions.size()-1]->setPixmap(QPixmap("://Project2_res/Enemys/Hanzo.png"));
+        scene->addItem(minions[minions.size()-1]);
+        minions[minions.size()-1]->x = 32*27;
+        minions[minions.size()-1]->y = 32*7+x*32;
+        minions[minions.size()-1] -> setPos(minions[minions.size()-1]->x,minions[minions.size()-1]->y);
+    }
+
+    start->hide();
+
+}
+
+void MainWindow::keyPressEvent(QKeyEvent *k)
+{
+    if(minions.at(0)->move != 0)
+    {
+        flag = minions.at(0);
+    }
+
+    if(minions.at(0)->move == 0)
+    {
+        flag = minions.at(1);
+    }
+
+    if(minions.at(1)->move == 0)
+    {
+        minions.at(0)->move = minions.at(0)->max_move;
+        minions.at(1)->move = minions.at(1)->max_move;
+        flag = minions.at(0);
+    }
+
+    switch(k->key())
+    {
+    case Qt::Key_W:
+    {
+        flag->y -= 32;
+        flag->setPos(flag->x,flag->y);
+        flag->move -= 1;
+        std::cerr << flag->move << std::endl;
+        break;
+    }
+    case Qt::Key_S:
+    {
+        flag->y +=32;
+        flag->setPos(flag->x,flag->y);
+        flag->move -= 1;
+        std::cerr << flag->move << std::endl;
+        break;
+    }
+    case Qt::Key_A:
+    {
+        flag->x -=32;
+        flag->setPos(flag->x,flag->y);
+        flag->move -= 1;
+        std::cerr << flag->move << std::endl;
+        break;
+    }
+    case Qt::Key_D:
+    {
+        flag->x +=32;
+        flag->setPos(flag->x,flag->y);
+        flag->move -= 1;
+        std::cerr << flag->move << std::endl;
+        std::cerr << flag->x << std::endl;
+        break;
+    }
+    case Qt::Key_J:
+    {
+        for(int i = 0; i < minions.size(); ++i)
+        {
+            if((minions.at(i)->x == (flag->x + 32)) && (minions.at(i)->y == flag->y) && (minions.at(i)->team != flag->team))
+            {
+                minions.at(i)->onHit(flag->atk);
+                if(minions.at(i)->hp <= 0)
+                {
+                    delete minions.at(i);
+                    minions.erase(minions.begin()+i);
+                }
+                flag->move -= 1;
+                std::cerr << flag->move << std::endl;
+                break;
+            }
+        }
+    }
+
+    }
 }

@@ -10,7 +10,7 @@ athena::athena()
     max_move = 5;
     team = 1; //player
     x = 0;
-    y = 286;
+    y = 32*9;
 }
 
 athena::~athena()
